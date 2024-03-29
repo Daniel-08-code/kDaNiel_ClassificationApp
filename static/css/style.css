@@ -1,0 +1,468 @@
+
+
+.titre{
+    position: relative;
+    left: 200px;
+    top: 100px;
+}
+
+.titre1{
+    position: relative;
+    top: 150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(11, 9, 134);
+}
+
+.raleway-<uniquifier> {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
+  
+  a{
+      text-decoration: none;
+  }
+  
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Raleway", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+  }
+  
+  html{
+      font-size: 95.5%;
+      scroll-behavior: inherit;
+      scroll-padding-top: 0;
+  }
+  
+  body{
+      background-color: #111;
+  }
+  
+  nav{
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height:10%;
+      padding: 0 5%;
+  }
+  
+  
+  nav .logo a{
+      color: #fff;
+      font-size: 150%;
+      text-decoration: wavy ;
+      text-transform: capitalize;
+  }
+  
+  nav .logo a span {
+      color: #29d9d5;
+  }
+  
+  .menu{
+      display: flex;
+      align-items: center;
+  }
+  
+  .menu li {
+      margin: 0 15px;
+      list-style-type: none;
+  }
+  
+  .btn-style{
+      color: #ffffff;
+      font-size: 90%;
+      
+      padding: 5px 20px;
+      border-radius: 5%;
+      transition: 0.5s;
+  }
+  
+  .btn-style:hover {
+      background-color: #130942;
+      color: #fff;
+  }
+
+
+
+ /* Add this CSS to improve the responsiveness of the navigation */
+
+/* For smaller screens, make the navigation items stack vertically */
+@media screen and (max-width: 600px) {
+    nav {
+      flex-direction: initial;
+      align-items: flex-start;
+      padding: 5%;
+      height: auto; /* Adjust height for variable content */
+    }
+  
+    .menu {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .menu li {
+      margin: 10px 0; /* Adjust spacing between items */
+    }
+  
+    .btn-style {
+      display: block; /* Ensure buttons occupy full width */
+      margin: 5px 0; /* Adjust spacing between buttons */
+    }
+  
+    nav .logo a {
+      font-size: 20px; /* Decrease logo font size for smaller screens */
+    }
+
+    body{
+       
+        margin-top: 200px;
+    }
+   
+
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.boutton{
+    display: inline-block; /* Permet d'appliquer des propriétés de bloc (comme un bouton) */
+    padding: 10px 20px; /* Espacement intérieur */
+    text-decoration: none; /* Suppression du soulignement par défaut des liens */
+    background-color: #007bff; /* Couleur de fond bleue */
+    color: #ffffff; /* Couleur du texte */
+    border: none; /* Suppression de la bordure */
+    border-radius: 5px; /* Arrondi des coins */
+    cursor: pointer; /* Curseur de la souris au survol */
+}
+
+.boutton:hover{
+    background-color: #0056b3; /* Changement de couleur au survol */
+}
+
+
+
+
+section {
+    position: relative;
+    left: 30%; /* Change to inline-block */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    width: 45%; /* Adjust width as needed */
+    margin-top: 20px; /* Adjust margin as needed */
+    margin-right: 60px;
+    margin-bottom:100px; /* Adjust margin as needed */
+    background-color: hsla(0, 45%, 98%, 0.938);
+    border-radius: 8px;
+    box-shadow: 5px 7px 10px rgb(0, 0, 0);
+    padding: 20px; /* Add padding for better spacing */
+    transition: opacity 1s ease-in-out;
+}
+
+.clearfix{
+    margin-top: 400px;
+}
+/* Add a clearfix to ensure proper layout */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+h3{
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+p{
+    color: #606063;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 10;
+    font-size: larger;
+}
+
+h1{
+    color: #073669;
+    padding-bottom: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+table {
+    position: relative;
+    border-collapse: separate;
+    height: auto;
+    width: auto;
+    
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+
+body {
+    background-image: url(../img7.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%; /* Ajuste la taille de l'image pour couvrir toute la fenêtre */
+    font-family: Arial, sans-serif;
+    background-color: rgba(38, 38, 41, 0.8); /* Couleur de fond avec opacité de 50% */
+    padding: 20px;
+}
+
+
+h2 {
+    color: #333;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.select-style {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #181515;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.file-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #1b1a1a;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.custom-form {
+    position: relative;
+    margin-top: 200px;
+    left: 30%;
+    right: 30%;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    width: 70%;
+    border-radius: 3%;
+    max-width: 400px;
+    background-color: #d0d5e0; /* Ajout du fond blanc */
+    padding: 20px; /* Espacement interne pour l'apparence */
+}
+
+/* Style pour les boutons */
+.submit-btn {
+    background-color: #113b69;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px; /* Espacement entre le bouton et les autres éléments */
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+   
+}
+
+/* Style the footer */
+
+footer {
+    background-color:rgb(233, 247, 255);/*background-color: #e8e9ec; /* Background color set to a dark color */
+    padding: 0px; /* Add padding */
+    height:100%;
+    text-align: center; /* Align content in center */
+    position: relative; /* Fix the footer at the bottom */
+    bottom: 0; /* Position at the bottom */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 100; /* Set z-index to make sure it's on top */
+}
+
+/* Style the footer divs */
+footer div {
+    display: inline-block; /* Display divs in line */
+    width: calc(100% / 3 - 50px); /* Calculate width for 3 divs with margins */
+    margin-right: 20px; /* Add some spacing between divs */
+    /*padding: 10px; /* Add padding to the divs */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    transition: opacity 0.5s ease; /* Add transition for opacity */
+}
+
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    footer div {
+        width: calc(50% - 40px); /* Calculate width for 2 divs with margins */
+    }
+}
+
+/* Animation */
+footer div:nth-child(1) { animation: fadeIn 6s ease 0.5s forwards; }
+footer div:nth-child(2) { animation: fadeIn 6s ease 1s forwards; }
+footer div:nth-child(3) { animation: fadeIn 6s ease 1.5s forwards; }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.visible-section {
+    opacity: 1;
+    height: 100%;
+}
+
+footer {
+    transition: opacity 3s ease-in-out;
+    
+}
+
+.animate-footer {
+    opacity: 1;
+}
+div:hover{
+        transform: scale(0.9);
+}
+
+/* For div content in other div*/
+#apropos .about div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/*image content in "about" div*/
+
+#apropos .about div img{
+    width: 45px;
+    height: 45px;
+    border: 2px solid #273e60;; 
+    border-radius: 50%;
+}
+
+/*div content in "apropos"*/
+
+#apropos .about {
+    width: 30%;
+    height: 70%;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 5px;
+    margin-bottom: 20px;
+}
+
+/*title of div content in "apropos" */
+#apropos .about  h2{
+    margin-left: 15px;
+    font-size: 16px;
+    color: #273e60;
+}
+
+/*paragraph content in "about" div*/
+
+#apropos .about{
+    font-size: 13px;
+}
+
+#apropos{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Others */
+
+#others ul li{
+
+    display: inline-block;
+    align-items: center;
+    font-size: 13px; 
+    padding-right: 20px; 
+
+}
+
+#others{
+    width: 500px;
+}
+#others ul li h3{
+    color: #273e60;
+}
+
+#others img {
+
+    width: 40px;
+    background-color: #273e60;
+    padding: 10px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+hr{
+    margin: 0px 80px 0px 80px;
+}
+p{  
+    margin-top: 3px;
+    font-size: 13px;
+}
+
+

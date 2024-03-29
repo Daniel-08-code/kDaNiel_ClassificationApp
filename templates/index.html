@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <style>
+        .nom{
+                font-family: "Audiowide", sans-serif;
+        }
+    </style>
+    
+    <title>Classification hierarchique</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a class="nom" href="#" class="logo">Apprentissage Non Supervis&eacute</a>
+        </div>
+
+        <ul class="menu">
+            <li class="menu-home">
+                <a href="#" class="btn-style">Accueil</a>
+            </li>
+            <li class="menu-cont">
+                <a href="#dendo" class="btn-style">Visualisations</a>
+            </li>
+            <li class="menu-proj">	
+                <a href="{{ url_for('static',filename='telechargeable.docx') }}" class="btn-style">Rapport</a>
+            </li>
+            <li class="menu-stag">
+                <a href="#apropos" class="btn-style">A propos</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <form action="/" method="post" enctype="multipart/form-data" class="custom-form">
+        <label for="Methode">Methode de Classification</label>
+        <select name="method" id="method" class="select-style">
+            <option value="CAH">CAH</option>
+            <option value="K-Means">K-Means</option>
+        </select>
+        <label for="file">Choisir un fichier Excel (.xlsx, .xls)</label>
+        <input type="file" name="file" id="file" accept=".xlsx, .xls, .csv" class="file-input">
+        <input type="submit" value="Valider" class="submit-btn">
+    </form>
+    <div class="clearfix"> 
+        <section id="dendo">
+            <img src="data:image/png;base64,{{ image }}" alt="Dendrogramme">
+        </section>   
+        
+    </div>
+    <footer>
+        <div id="apropos">
+    
+            <div class="about">
+                <div>
+                    <img src="../static/school.png" alt="iconEcole">
+                </div>
+                    <h2>A propos de mon ecole</h2><br>
+                <p>
+                    En 1999, l’Université IBN ZOHR innove en creant un établissement de formation d’ingénieur qui offre, en cinq ans, aux jeunes bacheliers scrupuleusement sélectionnés, une formation professionnelle, diversifiée, complète et relativement polyvalente.
+                </p>
+            </div>
+    
+            <div class="about">
+                <div>
+                    <img src="../static/person.png" alt="iconEleve">
+                </div>
+                    <h2>A propos de moi</h2><br>
+                <p>
+                    Ce projet est realise par Daniel Anonwodji Ce projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel Anonwo
+                </p>
+            </div>
+    
+            <div class="about">
+                <div>
+                    <img src="../static/auto_stories.png" alt="iconLivre">
+                </div>
+                    <h2>A propos de la filiere </h2><br>
+                <p>
+                    La filière « Finance et Ingénierie décisionnelle » a pour finalité de former des ingénieurs qualifiés en finance de marché, gestion des risques, gestion de portefeuille en maîtrisant les outils mathématiques de modélisation et économétriques d’aide à la décision.
+                </p>
+            </div>
+    
+        </div>
+    
+        <hr >
+    
+        <div id="others">
+    
+            <ul>
+    
+                            <li id="el1">
+                                <img src="../static/pin.png" alt="img1">
+                                <h3>Adresse</h3>
+                                <p>Maroc-Agadir</p>
+                            </li>
+    
+    
+                            <li id="el2">
+                                <img src="../static/email.png" alt="img2">
+                                <h3>Email</h3>
+                                <a href=""><p>danianowodji@gmail.com</p></a>
+                            </li>
+    
+                            <li id="el3">
+                                <img src="../static/call.png" alt="img3">
+                                <h3>Contact</h3>
+                                <p>+212 674942504</p>
+                            </li>
+                        
+            </ul>
+    
+        </div>
+   
+        
+    </footer>
+</body>
+</html>
