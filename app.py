@@ -11,7 +11,7 @@ import os
 matplotlib.use('Agg') 
 app = Flask(__name__)
 
-
+save_path = os.path.join(app.root_path, 'static')
 class Cluster:
     nbrCluster = 0
 
