@@ -52,7 +52,7 @@ class Fonction:
 
     @staticmethod
     def hierarchy(clusters):
-        doc = Document('static/rapport.docx')
+        doc = Document(os.path.join(save_path, 'rapport.docx'))
         doc.add_page_break()
         doc.add_paragraph("\n\n\n")
         hierarchy = []
