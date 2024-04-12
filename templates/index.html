@@ -43,13 +43,27 @@
             <option value="CAH">CAH</option>
             <option value="K-Means">K-Means</option>
         </select>
+        <label for="Distance">Choisissez une distance</label>
+        <select name="distance" id="distance" class="select-style">
+            <option value="distanceEuclidienne">Distance Euclidienne</option>
+            <option value="distanceManatthan">Distance de Manatthan</option>
+        </select>
         <label for="file">Choisir un fichier Excel (.xlsx, .xls)</label>
         <input type="file" name="file" id="file" accept=".xlsx, .xls, .csv" class="file-input">
+        
+        <!-- Champ pour le nombre de groupes (visible uniquement si la méthode est "K-Means") -->
+        <div id="kmeans-group-input" style="display: none;">
+            <label for="kmeans-groups">Nombre de groupes pour K-Means</label>
+            <input type="number" name="kmeans-groups" id="kmeans-groups" class="group-input">
+        </div>
+        
         <input type="submit" value="Valider" class="submit-btn">
     </form>
+    
+    
     <div class="clearfix"> 
         <section id="dendo">
-            <img src="data:image/png;base64,{{ image }}" alt="Dendrogramme">
+            <img src="data:image/png;base64,{{ image }}" alt="Votre figure apparaîtra ici...">
         </section>   
         
     </div>
@@ -72,7 +86,7 @@
                 </div>
                     <h2>A propos de moi</h2><br>
                 <p>
-                    Ce projet est realise par Daniel Anonwodji Ce projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel AnonwodjiCe projet est realise par Daniel Anonwo
+                    Je m'appelle Daniel ANONWODJI et je suis actuellement étudiant en première année de Finance et Ingénierie Décisionnelle à l'ENSA Agadir, pour l'année académique 2023-2024. Je suis passionné par les mathématiques appliquées à la finance ainsi que par le domaine de l'intelligence artificielle, en particulier dans le domaine de l'analyse de données et de l'information.
                 </p>
             </div>
     
@@ -94,24 +108,24 @@
     
             <ul>
     
-                            <li id="el1">
-                                <img src="../static/pin.png" alt="img1">
-                                <h3>Adresse</h3>
-                                <p>Maroc-Agadir</p>
-                            </li>
-    
-    
-                            <li id="el2">
-                                <img src="../static/email.png" alt="img2">
-                                <h3>Email</h3>
-                                <a href=""><p>danianowodji@gmail.com</p></a>
-                            </li>
-    
-                            <li id="el3">
-                                <img src="../static/call.png" alt="img3">
-                                <h3>Contact</h3>
-                                <p>+212 674942504</p>
-                            </li>
+                <li id="el1">
+                    <img src="../static/pin.png" alt="img1">
+                    <h3>Adresse</h3>
+                    <p>Maroc-Agadir</p>
+                </li>
+
+
+                <li id="el2">
+                    <img src="../static/email.png" alt="img2">
+                    <h3>Email</h3>
+                    <a href=""><p>danianowodji@gmail.com</p></a>
+                </li>
+
+                <li id="el3">
+                    <img src="../static/call.png" alt="img3">
+                    <h3>Contact</h3>
+                    <p>+212 674942504</p>
+                </li>
                         
             </ul>
     
@@ -119,5 +133,16 @@
    
         
     </footer>
+    <script>
+        // Fonction pour afficher ou masquer le champ pour le nombre de groupes en fonction de la méthode choisie
+        document.getElementById('method').addEventListener('change', function() {
+            var method = this.value;
+            if (method === 'K-Means') {
+                document.getElementById('kmeans-group-input').style.display = 'block';
+            } else {
+                document.getElementById('kmeans-group-input').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
