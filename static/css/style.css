@@ -15,12 +15,7 @@
     color: rgb(11, 9, 134);
 }
 
-.raleway-<uniquifier> {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-}
+
 
   
   a{
@@ -85,7 +80,7 @@
   .btn-style{
       color: #ffffff;
       font-size: 90%;
-      
+
       padding: 5px 20px;
       border-radius: 5%;
       transition: 0.5s;
@@ -280,8 +275,8 @@ label {
 
 .custom-form {
     position: relative;
-    margin-top: 200px;
-    left: 30%;
+    margin-top: 150px;
+    left: 33%;
     right: 30%;
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
@@ -290,6 +285,19 @@ label {
     max-width: 400px;
     background-color: #d0d5e0; /* Ajout du fond blanc */
     padding: 20px; /* Espacement interne pour l'apparence */
+}
+
+.group-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #1b1a1a;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#kmeans-group-input {
+    display: none; /* Masquer le champ au départ */
 }
 
 /* Style pour les boutons */
@@ -338,6 +346,8 @@ footer div {
     width: calc(100% / 3 - 50px); /* Calculate width for 3 divs with margins */
     margin-right: 20px; /* Add some spacing between divs */
     /*padding: 10px; /* Add padding to the divs */
+    margin-top: 20px;
+    margin-bottom: 20px;
     box-sizing: border-box; /* Include padding and border in width calculation */
     transition: opacity 0.5s ease; /* Add transition for opacity */
 }
@@ -376,9 +386,6 @@ footer {
 
 .animate-footer {
     opacity: 1;
-}
-div:hover{
-        transform: scale(0.9);
 }
 
 /* For div content in other div*/
