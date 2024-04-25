@@ -49,7 +49,6 @@ class Fonction:
     def extract_data_from_excel(file_path):
         # Charger le fichier Excel
         dataframe = pd.read_excel(file_path, engine='openpyxl')
-        
         # Identifier la position du tableau de données en recherchant les index des premières cellules non vides
         start_row = None
         start_col = None
@@ -61,16 +60,12 @@ class Fonction:
                     break
             if start_row is not None:
                 break
-        
         # Collecter les noms des individus (ligne d'index 0)
         individus = dataframe.iloc[start_row+1:, start_col].tolist()
-        
         # Collecter les noms des variables (première ligne après les noms des individus)
         variables = dataframe.iloc[start_row, start_col+1:].tolist()
-        
         # Extraire les valeurs dans un tableau à deux dimensions
         values = dataframe.iloc[start_row+1:, start_col+1:]
-        
         return individus, variables, values
 
 
@@ -91,14 +86,33 @@ class Fonction:
                 indice = random.randint(0,len(tabIndividus)-1)
             indiceTab.append(indice)
             centroidTab.append(Centroid(tabIndividus[indice]))
-        return centroidTab
+        return centroidTab,indiceTab
+    
+    @staticmethod
+    def mean2DTab(tab):
+        abscisse, ordonnee = [0,0]
+        if len(tab) % 2 == 0:
+            for i in range(0,len(tab)):
+                if i < len(tab)/2:
+                    abscisse += tab[i]/len(tab)/2
+                else:
+                    ordonnee += tab[i]/len(tab)/2
+        else:
+            for i in range(0,len(tab)):
+                if i < (len(tab)+1)/2:
+                    abscisse += tab[i]/(len(tab)-1)/2
+                else:
+                    ordonnee += tab[i]/(len(tab)+1)/2
+        return abscisse, ordonnee
     
     @staticmethod
     def kmeans(k,tabIndividus,distanceChoisie):
         doc = Document(os.path.join(save_path, 'rapport.docx'))
         doc.add_page_break()
         doc.add_paragraph("\n\n\n")
-        centroidTab = Fonction.aleatoire(k, tabIndividus)   #choix aléatoire des centoides initiaux
+        centroidTab,indiceTab = Fonction.aleatoire(k, tabIndividus) 
+        print(indiceTab)
+        #choix aléatoire des centoides initiaux
         nbreModification = 10
         while nbreModification != 0 :
             nbreModification = 0
@@ -120,22 +134,26 @@ class Fonction:
                             nbreModification += 1
             if nbreModification != 0 : # cas ou les groupes ont changé
                 #Calcul des nouveaux centres
-                for i in range(0,k): # k est le nombre de centres
-                    for j in range(0,len(centroidTab[i].data)):
-                        centroidTab[i].data[j] = 0
-                        ctr = 0
-                        for l in range(0,len(tabIndividus)):
-                            if tabIndividus[l].group == i:
-                                centroidTab[i].data[j] += tabIndividus[l].data[j]
-                                ctr += 1
-                        if ctr != 0:
-                            centroidTab[i].data[j] /= ctr   #ctr contient le nombre d'individu dans le groupe i
+                for i in range(k):  # k est le nombre de centres
+                    centroid_data_sum = np.zeros_like(centroidTab[i].data)  # Initialiser la somme des données des individus pour chaque centre
+                    ctr = np.zeros(len(centroidTab[i].data))  # Initialiser le compteur pour chaque dimension
+                    
+                    # Calculer la somme des données des individus pour chaque centre
+                    for l in range(len(tabIndividus)):
+                        if tabIndividus[l].group == i:
+                            centroid_data_sum += tabIndividus[l].data
+                            ctr += 1
+                    
+                    # Mettre à jour les centres en calculant la moyenne des données des individus pour chaque centre
+                    centroidTab[i].data = np.where(ctr != 0, centroid_data_sum / ctr, centroidTab[i].data)
+
+        TabCenters = [centroidTab[i].data for i in range(len(centroidTab))]
         resultat = []   #resultat sous forme de liste indiquant le groupe auquel chaque individu appartient
         for i in range(0,len(tabIndividus)):
             resultat.append(tabIndividus[i].group)
             doc.add_paragraph(f"{i+1}-- Individu {i+1} appartient au groupe {tabIndividus[i].group}.\n")
         doc.save(os.path.join(save_path, 'telechargeable.docx'))
-        return resultat
+        return resultat,TabCenters
 
     @staticmethod
     def hierarchy(clusters,distanceChoisie):
@@ -186,7 +204,8 @@ def upload_and_display():
             rows = data.values.tolist()
             
             data = data.to_numpy()
-          
+            data2D = [Fonction.mean2DTab(data[i]) for i in range(len(data))]
+            data2D = np.array(data2D)
             if method == 'CAH':
                 Cluster.nbrCluster = 0
                 clusters = [Cluster(data[i]) for i in range(len(data))]
@@ -200,10 +219,10 @@ def upload_and_display():
                 #print(hierarchy_result)
             
                 # Création du dendrogramme
-                plt.figure(figsize=(8, 6))
+                plt.figure(figsize=(10, 8))
                 hierarchy.dendrogram(hierarchy_result, labels=individus)
                 plt.xticks(rotation=90)
-                plt.title('Dendrogramme')
+                plt.title('CAH Clustering by Daniel ANONWODJI',fontsize=15)
                 plt.xlabel('Noms des individus')
                 plt.ylabel('Distance')
 
@@ -221,18 +240,23 @@ def upload_and_display():
             elif method == 'K-Means':
                 tabIndividus = [Individu(data[i]) for i in range(len(data))]
                 num_clusters = int(request.form['kmeans-groups'])
-                resultat = Fonction.kmeans(num_clusters, tabIndividus,distance)
+                resultat,centers = Fonction.kmeans(num_clusters, tabIndividus,distance)
+                centers = np.array(centers)
+                print(centers)
+                centers2D = [Fonction.mean2DTab(centers[i]) for i in range(len(centers))]
+                centers2D = np.array(centers2D)
                 resultat = np.array(resultat)
                 print(resultat)
                 # Plotting the clusters (you can customize this part according to your visualization needs)
-                plt.figure(figsize=(20, 22))
-                plt.scatter(data[:, 0], data[:, 5], c=resultat, cmap='viridis', s=100, alpha=0.5)
-                plt.title('K-Means Clustering')
+                plt.figure(figsize=(20, 20))
+                plt.scatter(data2D[:, 0], data2D[:, 1], c=resultat, cmap='viridis', s=1500, alpha=1)
+                plt.title('K-Means Clustering by Daniel ANONWODJI',fontsize=30)
                 plt.xlabel('Feature 1')
                 plt.ylabel('Feature 2')
-                for i, (x, y) in enumerate(zip(data[:, 0], data[:, 5])):
-                    plt.text(x, y, individus[i], fontsize=20, ha='right', va='bottom')
-
+                plt.scatter(centers2D[:, 0], centers2D[:, 1], c='red', s=300, alpha=1, marker='x', label='Centroids')
+                for i, (x, y) in enumerate(zip(data2D[:, 0], data2D[:, 1])):
+                    plt.text(x, y, individus[i], fontsize=25, ha='right', va='bottom')
+                plt.legend(fontsize=20,loc='lower left')
                 # Saving the plot as a base64 encoded image
                 buffer = io.BytesIO()
                 plt.savefig(buffer, format='png')
